@@ -3,10 +3,14 @@ import { NavLink } from "react-router-dom";
 import { faBars, faHouse, faPlay ,faClapperboard ,faClockRotateLeft ,faThumbsUp } from "@fortawesome/free-solid-svg-icons";
 import SidebarItem from "./SidebarItem";
 
+import { useDispatch ,useSelector } from "react-redux";
 
-function SideBar({ toggleSidebar, showSidebar }) {
-    console.log("sidebar")
-  return (
+function SideBar() {
+
+  const showSidebar=useSelector((state)=> state.app.status)
+
+
+ return (
     <>
       <ul
         className={`hidden sm:flex font-lato p-[1rem] m-0 top-[60px] flex-col gap-[0rem]

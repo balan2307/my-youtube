@@ -1,14 +1,17 @@
+import "./App.css";
 
-import './App.css';
+import Head from "./components/Head";
+import SideBar from "./components/Sidebar";
+import { useDispatch ,useSelector } from "react-redux";
 
-import Head from './components/Head';
 function App() {
+  
+  const showSidebar=useSelector((state)=>state.app.status)
+  
   return (
-  
     <>
-  
-     
-     <Head></Head>
+      <SideBar></SideBar>
+      <Head></Head>
     </>
   );
 }
