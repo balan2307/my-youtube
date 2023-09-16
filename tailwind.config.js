@@ -3,7 +3,8 @@ module.exports = {
   content: [ "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      'teko':['Teko', 'sans-serif']
+      'teko':['Teko', 'sans-serif'],
+      'lato':['Lato', 'sans-serif']
      
 
     },

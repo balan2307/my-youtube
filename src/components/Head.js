@@ -4,16 +4,20 @@ import back from '../assets/back.svg'
 import { useState ,useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube} from '@fortawesome/free-brands-svg-icons'
+import SideBar from './Sidebar';
 import { faBars ,faBell ,faVideo ,faCircleUser,faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 
 function Head() {
   const [toggle, setToggle] = useState(false);
   const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [showSidebar,toggleSidebar]=useState(false)
  
   function getWindowSize() {
     const {innerWidth, innerHeight} = window;
     return {innerWidth, innerHeight};
   }
+
+
 
   function debounce(fn, delay) {
     let timerId;
@@ -59,13 +63,15 @@ function Head() {
 
   return (
     <>
+    <SideBar showSidebar={showSidebar} toggleSidebar={toggleSidebar}></SideBar>
  
       {!toggle && (
         <div className={`py-3 mx-6   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}>
           <div className="flex  ">
             <div className="flex">
               <div className="hidden sm:flex w-8 h-8  items-center">
-              <FontAwesomeIcon icon={faBars} style={{height:'20px'}} />
+              <FontAwesomeIcon icon={faBars} style={{height:'20px'}}
+              onClick={()=>toggleSidebar((status)=>!status)} />
               </div>
               <div className="h-8 w-8 sm:ml-4 flex items-center">
               <FontAwesomeIcon icon={faYoutube} style={{color: "#e60000",height:'25px'}} />
