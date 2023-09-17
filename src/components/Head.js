@@ -1,19 +1,15 @@
 import React from "react";
 import search from "../assets/search.svg";
-import back from '../assets/back.svg'
 import { useState ,useEffect} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faYoutube} from '@fortawesome/free-brands-svg-icons'
-import SideBar from './Sidebar';
 import { faBars ,faBell ,faVideo ,faCircleUser,faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 import { Appactions } from "../store/AppSlice";
-import { useDispatch ,useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 function Head() {
   const [toggle, setToggle] = useState(false);
   const [windowSize, setWindowSize] = useState(getWindowSize());
-  const [showSidebar,toggleSidebar]=useState(false)
-  const status=useSelector((state)=>state.app.status)
 
   const dispatch=useDispatch();
  
@@ -71,12 +67,12 @@ function Head() {
     
  
       {!toggle && (
-        <div className={`py-3 mx-6   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}>
+        <div className={`py-3 mx-[2rem]   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}>
           <div className="flex  ">
             <div className="flex">
               <div className="hidden sm:flex w-8 h-8  items-center">
               <FontAwesomeIcon icon={faBars} style={{height:'20px'}}
-              onClick={()=>dispatch(Appactions.toggleSidebar(!status))} />
+              onClick={()=>dispatch(Appactions.toggleSidebar())} />
               </div>
               <div className="h-8 w-8 sm:ml-4 flex items-center">
               <FontAwesomeIcon icon={faYoutube} style={{color: "#e60000",height:'25px'}} />
@@ -90,6 +86,7 @@ function Head() {
             <img
               src={search}
               className="w-[1.5rem] inline "
+              alt="search"
               onClick={toggleSearch}
             ></img>
           </div>
@@ -105,7 +102,7 @@ function Head() {
         bg-[#f2f2f2]
         "
             >
-              <img src={search} className="w-[1.5rem] inline "></img>
+              <img src={search} className="w-[1.5rem] inline " alt="search"></img>
             </div>
           </div>
 
@@ -122,11 +119,6 @@ function Head() {
       {toggle && (
         <div className="py-3 mx-4   grid  grid-flow-col auto-cols-[minmax(0,1fr)] grid-cols-[1fr,6fr]">
           <div className=" flex justify-center h-8">
-            {/* <img
-              src={back}
-              className="w-[1.5rem] inline "
-              onClick={toggleSearch}
-            ></img> */}
             <FontAwesomeIcon icon={faArrowLeft} style={{height:'25px'}}  onClick={toggleSearch} />
           </div>
 
@@ -141,7 +133,7 @@ function Head() {
   bg-[#f2f2f2]
   "
             >
-              <img src={search} className="w-[1.5rem] inline "></img>
+              <img src={search} className="w-[1.5rem] inline " alt="search"></img>
             </div>
           </div>
         </div>

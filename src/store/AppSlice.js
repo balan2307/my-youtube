@@ -6,8 +6,8 @@ const AppSlice = createSlice({
     status: false,
   },
   reducers: {
-    toggleSidebar(state,action) {
-        state.status=action.payload
+    toggleSidebar(state) {
+        state.status=!state.status
     },
   },
 });
