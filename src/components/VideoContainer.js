@@ -25,7 +25,7 @@ function VideoContainer() {
   
     return videos?.length==0 ? <ShimmerCard></ShimmerCard> :(
     <div className=' text-black h-[100vh] w-[100%] p-4  flex-wrap gap-4
-    grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3'>
+    grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3'>
        {
         videos.map((video)=> <VideoCard info={video} key={video.id}></VideoCard>)
        }

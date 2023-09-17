@@ -1,24 +1,25 @@
 import React from "react";
 import search from "../assets/search.svg";
-import { useState ,useEffect} from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faYoutube} from '@fortawesome/free-brands-svg-icons'
-import { faBars ,faBell ,faVideo ,faCircleUser,faArrowLeft} from '@fortawesome/free-solid-svg-icons'
-import { Appactions } from "../store/AppSlice";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  faBell,
+  faVideo,
+  faCircleUser,
+  faArrowLeft,
+} from "@fortawesome/free-solid-svg-icons";
+
+import YoutubeIcon from "./UI/YoutubeIcon";
 
 function Head() {
   const [toggle, setToggle] = useState(false);
   const [windowSize, setWindowSize] = useState(getWindowSize());
 
-  const dispatch=useDispatch();
- 
   function getWindowSize() {
-    const {innerWidth, innerHeight} = window;
-    return {innerWidth, innerHeight};
+    const { innerWidth, innerHeight } = window;
+    return { innerWidth, innerHeight };
   }
-
-
 
   function debounce(fn, delay) {
     let timerId;
@@ -38,50 +39,35 @@ function Head() {
     }
 
     const debouncedResize = debounce(handleWindowResize, 200);
-    
-    window.addEventListener('resize', debouncedResize);
+
+    window.addEventListener("resize", debouncedResize);
 
     return () => {
-      window.removeEventListener('resize', debouncedResize);
+      window.removeEventListener("resize", debouncedResize);
     };
   }, []);
 
   useEffect(() => {
-
     if (windowSize.innerWidth >= 768) {
       setToggle(false);
     }
   }, [windowSize.innerWidth]);
 
   function toggleSearch(setTo) {
-    console.log("toggle",setTo);
-    setToggle((status)=>{
-     return !status
-      
+    console.log("toggle", setTo);
+    setToggle((status) => {
+      return !status;
     });
   }
 
-
   return (
     <>
-    
- 
       {!toggle && (
-        <div className={`py-3 mx-[2rem]   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}>
-          <div className="flex  ">
-            <div className="flex">
-              <div className="hidden sm:flex w-8 h-8  items-center">
-              <FontAwesomeIcon icon={faBars} style={{height:'20px'}}
-              onClick={()=>dispatch(Appactions.toggleSidebar())} />
-              </div>
-              <div className="h-8 w-8 sm:ml-4 flex items-center">
-              <FontAwesomeIcon icon={faYoutube} style={{color: "#e60000",height:'25px'}} />
-              </div>
-              <span className=" ml-1 font-teko text-[1.6rem] ">Youtube</span>
-            </div>
-          </div>
+        <div
+          className={`py-3 mx-[2rem]   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}
+        >
+          <YoutubeIcon type="nav"></YoutubeIcon>
 
-         
           <div className="md:hidden flex justify-center h-8">
             <img
               src={search}
@@ -102,15 +88,19 @@ function Head() {
         bg-[#f2f2f2]
         "
             >
-              <img src={search} className="w-[1.5rem] inline " alt="search"></img>
+              <img
+                src={search}
+                className="w-[1.5rem] inline "
+                alt="search"
+              ></img>
             </div>
           </div>
 
           <div className="flex  justify-end mt-[3px]">
             <div className="flex gap-4 md:gap-4 ">
-            <FontAwesomeIcon icon={faVideo}  style={{height:'25px'}} />
-              <FontAwesomeIcon icon={faBell} style={{height:'25px'}} />
-              <FontAwesomeIcon icon={faCircleUser} style={{height:'25px'}} />
+              <FontAwesomeIcon icon={faVideo} style={{ height: "25px" }} />
+              <FontAwesomeIcon icon={faBell} style={{ height: "25px" }} />
+              <FontAwesomeIcon icon={faCircleUser} style={{ height: "25px" }} />
             </div>
           </div>
         </div>
@@ -119,7 +109,11 @@ function Head() {
       {toggle && (
         <div className="py-3 mx-4   grid  grid-flow-col auto-cols-[minmax(0,1fr)] grid-cols-[1fr,6fr]">
           <div className=" flex justify-center h-8">
-            <FontAwesomeIcon icon={faArrowLeft} style={{height:'25px'}}  onClick={toggleSearch} />
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              style={{ height: "25px" }}
+              onClick={toggleSearch}
+            />
           </div>
 
           <div className="flex   items-center  ">
@@ -133,7 +127,11 @@ function Head() {
   bg-[#f2f2f2]
   "
             >
-              <img src={search} className="w-[1.5rem] inline " alt="search"></img>
+              <img
+                src={search}
+                className="w-[1.5rem] inline "
+                alt="search"
+              ></img>
             </div>
           </div>
         </div>

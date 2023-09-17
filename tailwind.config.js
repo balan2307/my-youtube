@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
+
+const { screens } = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  content: [ "./src/**/*.{js,jsx,ts,tsx}"],
+  content: [ "*","./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
       'teko':['Teko', 'sans-serif'],
@@ -8,6 +11,11 @@ module.exports = {
      
 
     },
+    screens:{
+      xsm:"550px",
+      ...screens
+    }
+   
   },
   plugins: [],
 }
