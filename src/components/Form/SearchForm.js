@@ -88,13 +88,13 @@ function SearchForm({ style ,type}) {
          bg-white p-2 rounded-md shadow-md ${type=='lg' ? 'hidden md:block' : ''}`}>
           {suggestion.map((suggest, i) => {
             return (
-              <div className="flex " key={i} onMouseDown={(e) => handleClick(e)}>
+              <div className="flex  hover:bg-gray-200" key={i} onMouseDown={(e) => handleClick(e)}>
                 <img
                   src={search}
                   className="w-[1.5rem] inline "
                   alt="search"
                 ></img>
-                <p className="p-1 cursor-pointer border" data-query={suggest}>
+                <p className="p-1 cursor-pointer" data-query={suggest}>
                   {suggest}
                 </p>
               </div>
