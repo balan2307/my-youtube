@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-import { Appactions } from "../../store/appSlice";
+import { Appactions } from "../../store/AppSlice";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
