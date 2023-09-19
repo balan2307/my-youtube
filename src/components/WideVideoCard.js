@@ -36,7 +36,7 @@ function WideVideoCard({ info }) {
       <div className="flex flex-col w-[100%] md:min-w-[65%] ">
         <p className="font-semibold">{title}</p>
         <p className="text-gray-500 font-semibold">{channelTitle}</p>
-        {type == "video" && <p className="text-gray-500">{description}</p>}
+        {/* {type == "video" && <p className="text-gray-500 break-all">{description}</p>} */}
       </div>
       {/* <p className='text-gray-500'>{getViewCount(viewCount)} views</p> */}
     </div>
