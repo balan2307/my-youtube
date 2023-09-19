@@ -1,30 +1,39 @@
 import "./App.css";
-
-import Head from "./components/Head";
 import MainContainer from "./components/MainContainer";
-import Backdrop from "./components/UI/Backdrop";
-import { useSelector } from "react-redux";
-import { useEffect } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Body from "./components/Body";
+import Head from "./components/Head";
+import WatchPage from "./components/WatchPage";
+import SearchResultContainer from "./components/SearchResultContainer";
 
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Body></Body>,
+    children: [
+      {
+        path: "",
+        element: <MainContainer></MainContainer>,
+      },
+      {
+        path: "/watch",
+        element: <WatchPage></WatchPage>,
+      },
+      {
+        path:"/results",
+        element:<SearchResultContainer></SearchResultContainer>
+      }
+    ],
+  },
+]);
 function App() {
 
-  const showBackrop=useSelector((store)=>store.app.backdrop)
 
-  useEffect(()=>{
-    document.body.style.overflow = showBackrop ? 'hidden' : 'visible';
-
-  },[showBackrop])
-  
-
-
-  
   return (
     <>
-  
-      <Head></Head>
-      <MainContainer></MainContainer>
-      {showBackrop && <Backdrop></Backdrop>}
-    
+      
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }

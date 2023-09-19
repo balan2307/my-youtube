@@ -2,6 +2,7 @@ import React from "react";
 import search from "../assets/search.svg";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SearchForm from "../components/Form/SearchForm";
 
 import {
   faBell,
@@ -12,9 +13,11 @@ import {
 
 import YoutubeIcon from "./UI/YoutubeIcon";
 
+
 function Head() {
   const [toggle, setToggle] = useState(false);
   const [windowSize, setWindowSize] = useState(getWindowSize());
+  const [serchedTerm, setSearchedTerm] = useState("");
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -54,7 +57,6 @@ function Head() {
   }, [windowSize.innerWidth]);
 
   function toggleSearch(setTo) {
-    console.log("toggle", setTo);
     setToggle((status) => {
       return !status;
     });
@@ -64,9 +66,9 @@ function Head() {
     <>
       {!toggle && (
         <div
-          className={`py-3 mx-[2rem]   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}
+          className={`py-3 mx-[1rem] md:mx-[2rem]   grid  grid-flow-col auto-cols-[minmax(0,1fr)] md:grid-cols-[1fr,2fr,1fr]`}
         >
-          <YoutubeIcon type="nav"></YoutubeIcon>
+          <YoutubeIcon type="nav" clas></YoutubeIcon>
 
           <div className="md:hidden flex justify-center h-8">
             <img
@@ -77,24 +79,9 @@ function Head() {
             ></img>
           </div>
 
-          <div className="hidden md:flex   items-center  ">
-            <input
-              type="text"
-              className="rounded-l-3xl border border-[#e6e8ec] h-8 w-[85%] "
-            ></input>
+          <SearchForm style="hidden md:flex   items-center  " type="lg"></SearchForm>
 
-            <div
-              className="inline-flex w-[15%] h-8 border border-[#e6e8ec] justify-center rounded-r-3xl border-l-0
-        bg-[#f2f2f2]
-        "
-            >
-              <img
-                src={search}
-                className="w-[1.5rem] inline "
-                alt="search"
-              ></img>
-            </div>
-          </div>
+    
 
           <div className="flex  justify-end mt-[3px]">
             <div className="flex gap-4 md:gap-4 ">
@@ -116,24 +103,8 @@ function Head() {
             />
           </div>
 
-          <div className="flex   items-center  ">
-            <input
-              type="text"
-              className="rounded-l-3xl border border-[#e6e8ec] h-8 w-[85%] "
-            ></input>
+          <SearchForm style="flex items-center "></SearchForm>
 
-            <div
-              className="inline-flex w-[15%] h-8 border border-[#e6e8ec] justify-center rounded-r-3xl border-l-0
-  bg-[#f2f2f2]
-  "
-            >
-              <img
-                src={search}
-                className="w-[1.5rem] inline "
-                alt="search"
-              ></img>
-            </div>
-          </div>
         </div>
       )}
     </>

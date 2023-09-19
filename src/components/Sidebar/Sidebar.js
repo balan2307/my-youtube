@@ -20,7 +20,7 @@ function SideBar() {
   return (
     <>
       <div
-        className={`hidden sm:flex font-lato p-[1rem] m-0 flex-col gap-[0rem]
+        className={`hidden sm:flex font-lato px-[1rem] py-[0.45rem] m-0 flex-col gap-[0rem]
          bg-white text-black h-[100vh] w-[45%] sm:w-[30%] lg:w-[20%]  z-50 
          left-0 top-0
 

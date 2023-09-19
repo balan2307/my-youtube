@@ -2,6 +2,8 @@ import React from 'react'
 import VideoCard from './VideoCard'
 import { useEffect ,useState } from 'react'
 import ShimmerCard from './ShimmerUI/ShimmerCard';
+import { Link } from 'react-router-dom';
+import { YOUTUBE_API } from '../utils/constants';
 
 function VideoContainer() {
 
@@ -12,8 +14,9 @@ function VideoContainer() {
 
    async function fetchVideos()
    {
-    const response=await fetch('https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=AIzaSyCXc7QcEcP7HsXXhFZ-pthvsISRkELcQYI')
+    const response=await fetch(YOUTUBE_API)
     const data=await response.json();
+    console.log("data check ",data)
     setVideos(data.items)
    
    }
@@ -27,7 +30,7 @@ function VideoContainer() {
     <div className=' text-black h-[100vh] w-[100%] p-4  flex-wrap gap-4
     grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3'>
        {
-        videos.map((video)=> <VideoCard info={video} key={video.id}></VideoCard>)
+        videos.map((video)=> <Link to={`/watch?v=${video.id}`} key={video.id}><VideoCard info={video} ></VideoCard></Link>)
        }
       
     </div>)

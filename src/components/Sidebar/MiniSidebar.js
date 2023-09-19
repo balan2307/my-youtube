@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 function MiniSidebar() {
-  console.log("mini");
+ 
   return (
     <div
       className={`hidden sm:flex font-lato p-4  m-0 flex-col gap-[0rem]

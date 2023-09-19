@@ -9,7 +9,6 @@ function MainContainer() {
 
   return (
     <div className='flex mx-1 '>
-        <SideBar></SideBar>
          <MiniSidebar></MiniSidebar> 
          
         <VideoContainer></VideoContainer>
