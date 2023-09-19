@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const AppSlice = createSlice({
+const appSlice = createSlice({
   name: "app",
   initialState: {
     status: false,
@@ -17,5 +17,5 @@ const AppSlice = createSlice({
 });
 
 
-export const Appactions=AppSlice.actions;
-export default AppSlice.reducer
+export const Appactions=appSlice.actions;
+export default appSlice.reducer

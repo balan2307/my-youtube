@@ -17,7 +17,7 @@ function SearchForm({ style ,type}) {
   const [suggestion, setSuggestion] = useState([]);
   const [toggleResults,setToggle]=useState(true)
   const searches=useSelector((state)=>state.search.searches)
-  console.log("searches ",searches)
+
 
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ function SearchForm({ style ,type}) {
         setSuggestion(searches[searchedTerm])
       }
      else getSuggestion();
-    }, 300);
+    }, 200);
 
     return () => {
       clearTimeout(timer);
@@ -52,7 +52,7 @@ function SearchForm({ style ,type}) {
 
   function handleClick(e) {
     const q = e.target.dataset.query;
-    console.log("clicked")
+  
   
     if(e.target.tagName!='P') return
     setToggle(false)

@@ -1,23 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
+import { YOUTUBE_VIDEO_BYID } from "../utils/constants";
+import { getViewCount } from "../utils/viewCount";
 
 function WatchPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("v");
+  const [videoDetail, setVideoDetail] = useState({});
+  const [toggleDescp,setDescpToggle]=useState(false)
+
+  // useEffect(()=>{
+
+  //   if(!videoDetail) return
+  //   const {snippet,statistics}=videoDetail;
+  //   const {title, channelTitle, thumbnails}=snippet;
+  //   const {viewCount}=statistics;
+
+  // },[videoDetail])
+
+  const { snippet = {}, statistics = {} } = videoDetail;
+  const { title, channelTitle, thumbnails, description } = snippet;
+  const { viewCount } = statistics;
+  const [paraBreak,setParaBreak]=useState(0)
+
+
+  async function fetchVideoDetails() {
+    const res = await fetch(YOUTUBE_VIDEO_BYID + id);
+    const data = await res.json();
+    setVideoDetail(data.items[0]);
+  }
+
+  console.log("vide ", videoDetail);
+
+  useEffect(() => {
+    fetchVideoDetails();
+  }, []);
+
+  useEffect(()=>{
+
+    if(!description) return
+    let index=description?.indexOf('--');
+    if(index==-1) index = description.indexOf('\n');
+  
+    setParaBreak(index)
+    console.log("index ",index,description[index])
+
+  },[description])
+
   return (
-    <div className="p-6">
-     <div className=" h-[40vh]  sm:h-[70vh]  md:w-[70%] ">
+    <div className="p-6 flex flex-col gap-4">
+      <div className=" h-[40vh]  xsm:h-[70vh]  md:w-[70%] ">
+        <iframe
+          width="100%"
+          height="100%"
+          src={`https://www.youtube.com/embed/${id}`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        ></iframe>
+      </div>
+      <div className="font-lato flex flex-col gap-2   md:w-[70%] ">
+        <div className="flex flex-col gap-2">
+          <p className="font-bold text-lg">{title}</p>
+          <p className="font-semibold text-md ">{channelTitle}</p>
+        </div>
+        <div className="w-[100%] bg-[#f2f2f2] p-2">
+          <p>{getViewCount(viewCount)} views</p>
+          <div>
+            <p className="whitespace-pre-line">{description?.slice(0,paraBreak-1)}</p>
+            {!toggleDescp && <span className="font-semibold cursor-pointer"
+            onClick={()=>setDescpToggle(true)}>...Show more</span>}
+            {toggleDescp && description?.length>300 ? (
+              <div className="inline">
+              <p className="whitespace-pre-line inline">{description?.slice(paraBreak,description?.length)}</p>
+              {toggleDescp && <span className="font-semibold cursor-pointer"
+              onClick={()=>setDescpToggle(false)}>...Show less</span>}
+              </div>
+            ) : ''
 
-     <iframe
-        width="100%"
-        height="100%"
-        src={`https://www.youtube.com/embed/${id}`}
-        frameBorder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      ></iframe>
-
-     </div>
+            }
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

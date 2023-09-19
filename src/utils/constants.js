@@ -5,4 +5,6 @@ export const YOUTUBE_API=`https://youtube.googleapis.com/youtube/v3/videos?part=
 
 export const SEARCH_SUGGESTION_API='https://corsproxy.io/?https://clients1.google.com/complete/search?client=firefox&ds=yt&q='
 
-export const SEARCH_API='https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&'
+export const SEARCH_API='https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&'
+
+export const YOUTUBE_VIDEO_BYID = `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=${API_KEY}&id=`;

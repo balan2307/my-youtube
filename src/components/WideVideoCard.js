@@ -5,7 +5,7 @@ function WideVideoCard({ info }) {
   const { snippet, statistics } = info;
   const { title, channelTitle, thumbnails, description } = snippet;
   const type = info.id.kind.includes("channel") ? "channel" : "video";
-  console.log("Card ", info, description);
+
   //   const {viewCount}=statistics;
 
   // let minTitle = title.slice(0, 65);

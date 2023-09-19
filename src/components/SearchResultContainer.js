@@ -17,20 +17,20 @@ function SearchResultContainer() {
 
 
   useEffect(() => {
-    console.log("search req")
+  
     if(searchParams.get('search_query')==query) return;
     setQuery(query)
-    console.log("re render",searchParams.get('search_query'),query)
+
     getSearchResults(searchParams.get("search_query"));
 
   }, [searchParams.get("search_query")]);
 
   const getSearchResults = async (q) => {
-    console.log("search")
+   
     const res = await fetch(`${SEARCH_API}q=${q}&key=${API_KEY}&safeSearch=moderate`);
     const data = await res.json();
     setVideos(data.items)
-    console.log("data fetched", data);
+    
   };
   return ( videos?.length==0 ? <ShimmerResultCard></ShimmerResultCard> : (<div className="flex">
 
