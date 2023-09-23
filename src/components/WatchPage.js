@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { YOUTUBE_VIDEO_BYID } from "../utils/constants";
+import { YOUTUBE_VIDEO_BYID ,COMMENTS, API_KEY } from "../utils/constants";
 import { getViewCount } from "../utils/viewCount";
 import VideoDescription from "./Video/VideoDescription";
+import CommentsContainer from "./Comments/CommentsContainer";
 
 function WatchPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("v");
   const [videoDetail, setVideoDetail] = useState({});
+  const [comments,setComments]=useState([])
 
   const { snippet = {}, statistics = {} } = videoDetail;
   const { title, channelTitle, thumbnails, description } = snippet;
@@ -20,15 +22,15 @@ function WatchPage() {
     setVideoDetail(data.items[0]);
   }
 
-  console.log("vide ", videoDetail);
 
   useEffect(() => {
     fetchVideoDetails();
+
   }, []);
 
   return (
-    <div className="p-6 flex flex-col gap-4">
-      <div className=" h-[40vh]  xsm:h-[70vh]  md:w-[70%] ">
+    <div className="p-6 flex flex-col gap-4 mx-[2%]">
+      <div className=" h-[30vh]  xsm:h-[70vh]  md:w-[70%] ">
         <iframe
           width="100%"
           height="100%"
@@ -48,6 +50,8 @@ function WatchPage() {
           <VideoDescription description={description}></VideoDescription>
         </div>
       </div>
+      <CommentsContainer id={id}></CommentsContainer>
+
     </div>
   );
 }
