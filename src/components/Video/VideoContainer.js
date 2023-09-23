@@ -16,7 +16,7 @@ function VideoContainer() {
    {
     const response=await fetch(YOUTUBE_API)
     const data=await response.json();
-    console.log("data check ",data)
+    // console.log("data check ",data)
     setVideos(data.items)
    
    }

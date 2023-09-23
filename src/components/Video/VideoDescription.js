@@ -21,7 +21,8 @@ function VideoDescription({description}) {
     console.log(
       "index ",
       description?.indexOf("--"),
-      description?.indexOf("\n")
+      description?.indexOf("\n"),
+      description.length
     );
   }, [description]);
 
@@ -38,7 +39,7 @@ function VideoDescription({description}) {
           ...Show more
         </span>
       )}
-      {toggleDescp && description?.length > 300 ? (
+      {toggleDescp && description?.length > paraBreak ? (
         <div className="inline">
           <span className="whitespace-pre-line inline break-all">
             {description?.slice(paraBreak, description?.length)}
