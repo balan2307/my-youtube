@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import { YOUTUBE_VIDEO_BYID, COMMENTS, API_KEY } from "../../utils/constants";
 import Comment from "./Comment";
 import CommentList from "./CommentList";
+import ShimmerComment from "../ShimmerUI/ShimmerComment";
+
 
 function CommentsContainer({ id }) {
   const [comments, setComments] = useState([]);
@@ -21,6 +23,7 @@ function CommentsContainer({ id }) {
 
   return (
     <div>
+      {comments.length==0 && <ShimmerComment></ShimmerComment>}
       {comments.length > 0 && <CommentList comments={comments}></CommentList>}
     </div>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Comment from "./Comment";
+import ShimmerComment from "../ShimmerUI/ShimmerComment";
 
 const CommentList = ({ comments }) => {
   const [showReplies, setShowReplies] = useState(
