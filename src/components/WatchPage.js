@@ -3,27 +3,16 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { YOUTUBE_VIDEO_BYID } from "../utils/constants";
 import { getViewCount } from "../utils/viewCount";
+import VideoDescription from "./Video/VideoDescription";
 
 function WatchPage() {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("v");
   const [videoDetail, setVideoDetail] = useState({});
-  const [toggleDescp,setDescpToggle]=useState(false)
-
-  // useEffect(()=>{
-
-  //   if(!videoDetail) return
-  //   const {snippet,statistics}=videoDetail;
-  //   const {title, channelTitle, thumbnails}=snippet;
-  //   const {viewCount}=statistics;
-
-  // },[videoDetail])
 
   const { snippet = {}, statistics = {} } = videoDetail;
   const { title, channelTitle, thumbnails, description } = snippet;
   const { viewCount } = statistics;
-  const [paraBreak,setParaBreak]=useState(0)
-
 
   async function fetchVideoDetails() {
     const res = await fetch(YOUTUBE_VIDEO_BYID + id);
@@ -36,17 +25,6 @@ function WatchPage() {
   useEffect(() => {
     fetchVideoDetails();
   }, []);
-
-  useEffect(()=>{
-
-    if(!description) return
-    let index=description?.indexOf('--');
-    if(index==-1) index = description.indexOf('\n');
-  
-    setParaBreak(index)
-    console.log("index ",index,description[index])
-
-  },[description])
 
   return (
     <div className="p-6 flex flex-col gap-4">
@@ -67,20 +45,7 @@ function WatchPage() {
         </div>
         <div className="w-[100%] bg-[#f2f2f2] p-2">
           <p>{getViewCount(viewCount)} views</p>
-          <div>
-            <p className="whitespace-pre-line">{description?.slice(0,paraBreak-1)}</p>
-            {!toggleDescp && <span className="font-semibold cursor-pointer"
-            onClick={()=>setDescpToggle(true)}>...Show more</span>}
-            {toggleDescp && description?.length>300 ? (
-              <div className="inline">
-              <p className="whitespace-pre-line inline">{description?.slice(paraBreak,description?.length)}</p>
-              {toggleDescp && <span className="font-semibold cursor-pointer"
-              onClick={()=>setDescpToggle(false)}>...Show less</span>}
-              </div>
-            ) : ''
-
-            }
-          </div>
+          <VideoDescription description={description}></VideoDescription>
         </div>
       </div>
     </div>

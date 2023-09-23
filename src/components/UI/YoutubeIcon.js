@@ -28,7 +28,7 @@ function YoutubeIcon({ type }) {
         />
       </div>
 
-      <div className="h-8 w-8 sm:ml-4 flex items-center">
+      <div className="h-8 w-8 sm:ml-4 mt-[0.19rem] flex items-center">
        
           <Link to='/'>
           <FontAwesomeIcon
@@ -39,7 +39,7 @@ function YoutubeIcon({ type }) {
       
       </div>
 
-      <span className=" ml-1 font-teko text-[1.6rem] ">Youtube</span>
+      <span className=" ml-1  font-teko text-[1.6rem] ">Youtube</span>
     </div>
   );
 }

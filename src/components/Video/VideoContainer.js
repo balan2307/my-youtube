@@ -1,9 +1,9 @@
 import React from 'react'
 import VideoCard from './VideoCard'
 import { useEffect ,useState } from 'react'
-import ShimmerCard from './ShimmerUI/ShimmerCard';
+import ShimmerCard from '../ShimmerUI/ShimmerCard';
 import { Link } from 'react-router-dom';
-import { YOUTUBE_API } from '../utils/constants';
+import { YOUTUBE_API } from '../../utils/constants';
 
 function VideoContainer() {
 

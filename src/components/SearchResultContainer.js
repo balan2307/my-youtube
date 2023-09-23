@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import MiniSidebar from "./Sidebar/MiniSidebar";
-import WideVideoCard from "./WideVideoCard";
+import WideVideoCard from "./Video/WideVideoCard";
 import { Link } from "react-router-dom";
 import { SEARCH_API, API_KEY } from "../utils/constants";
 import ShimmerResultCard from "./ShimmerUI/ShimmerResultCard";

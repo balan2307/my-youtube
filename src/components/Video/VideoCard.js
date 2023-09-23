@@ -1,5 +1,5 @@
 import React from 'react'
-import { getViewCount } from '../utils/viewCount';
+import { getViewCount } from '../../utils/viewCount';
 
 
 function VideoCard({info}) {

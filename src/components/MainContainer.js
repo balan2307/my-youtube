@@ -1,6 +1,6 @@
 import React from 'react'
 import SideBar from './Sidebar/Sidebar'
-import VideoContainer from './VideoContainer'
+import VideoContainer from './Video/VideoContainer'
 import MiniSidebar from './Sidebar/MiniSidebar';
 // import ButtonList from './ButtonList';
 

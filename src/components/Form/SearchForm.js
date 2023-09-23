@@ -25,7 +25,7 @@ function SearchForm({ style ,type}) {
     const timer = setTimeout(() => {
 
       
-      if(searchedTerm=="") return
+      
       if(searches[searchedTerm])
       {
         setSuggestion(searches[searchedTerm])
