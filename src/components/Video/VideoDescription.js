@@ -1,9 +1,19 @@
 import React from "react";
 import { useState ,useEffect } from "react";
+import  {Link} from 'react-router-dom'
+
 
 function VideoDescription({description}) {
   const [toggleDescp, setDescpToggle] = useState(false);
   const [paraBreak, setParaBreak] = useState(0);
+
+
+  useEffect(()=>{
+
+    if(toggleDescp) return
+     window.scrollTo({ top: 100, left: 0, behavior: "smooth" });
+
+  },[toggleDescp])
 
   useEffect(() => {
     if (!description) return;
@@ -47,7 +57,9 @@ function VideoDescription({description}) {
           {toggleDescp && (
             <span
               className="font-semibold cursor-pointer break-all"
-              onClick={() => setDescpToggle(false)}
+              onClick={() => {
+                setDescpToggle(false)
+              }}
             >
               ...Show less
             </span>
