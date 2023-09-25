@@ -13,7 +13,7 @@ function CommentsContainer({ id }) {
   async function fetchComments() {
     const res = await fetch(`${COMMENTS}videoId=${id}&key=${API_KEY}`);
     const data = await res.json();
-    console.log("comments ", data.items);
+    // console.log("comments ", data.items);
     setComments(data.items);
     // setVideoDetail(data.items[0]);
   }

@@ -28,12 +28,12 @@ function VideoDescription({description}) {
       Math.min(description?.indexOf("--"), description?.indexOf("\n"))
     );
 
-    console.log(
-      "index ",
-      description?.indexOf("--"),
-      description?.indexOf("\n"),
-      description.length
-    );
+    // console.log(
+    //   "index ",
+    //   description?.indexOf("--"),
+    //   description?.indexOf("\n"),
+    //   description.length
+    // );
   }, [description]);
 
   return (

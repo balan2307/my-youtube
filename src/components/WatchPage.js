@@ -38,7 +38,7 @@ function WatchPage() {
 
   return (
     <div className="p-6 flex flex-row gap-4 mx-[2%]">
-      <div className=" md:w-[70%] ">
+      <div className=" lg:w-[70%] ">
         <div className=" h-[30vh]  xsm:h-[70vh]  ">
           <iframe
             width="100%"
@@ -62,7 +62,7 @@ function WatchPage() {
         <CommentsContainer id={id}></CommentsContainer>
       </div>
 
-      <div className="flex md:block flex-col h-[80vh] w-[30%]">
+      <div className="hidden lg:flex flex-col h-[80vh] w-[30%]">
         <ChatContainer></ChatContainer>
         <form className="p-2 border border-t-0 rounded-bl-lg rounded-br-lg" onSubmit={(e)=>{
           e.preventDefault();
