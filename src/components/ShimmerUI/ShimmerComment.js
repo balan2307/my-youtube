@@ -9,7 +9,7 @@ function ShimmerComment() {
     shimmerItems.push(
       <div className='flex gap-2' key={i}>
         <div className='bg-gray-200 h-10 w-10 rounded-full'></div>
-        <div className='w-[70%] h-16 bg-gray-200'></div>
+        <div className='w-[100%] h-16 bg-gray-200'></div>
       </div>
     );
   }

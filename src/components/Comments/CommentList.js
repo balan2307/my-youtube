@@ -38,8 +38,9 @@ const CommentList = ({ comments }) => {
           {comment?.replies && (
                 <div className="ml-14">
                 <p
+                 className=""
                   onClick={() => toggleReply(index)}
-                  style={{ cursor: "pointer", color: "blue" }}
+                  style={{ cursor: "pointer" }}
                 >
                   {showReplies[index] ? "Hide Replies" : "Show Replies"}
                 </p>
