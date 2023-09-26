@@ -10,6 +10,7 @@ import { chatActions } from "../store/chatSlice";
 import ChatContainer from "./Chat/ChatContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import ShimmerDescription from "./ShimmerUI/ShimmerDescription";
 
 function WatchPage() {
   const [searchParams] = useSearchParams();
@@ -22,14 +23,14 @@ function WatchPage() {
   const { viewCount } = statistics;
 
   const dispatch = useDispatch();
- 
+
+  const isVideoDetailEmpty = Object.keys(videoDetail).length === 0;
 
   async function fetchVideoDetails() {
     const res = await fetch(YOUTUBE_VIDEO_BYID + id);
     const data = await res.json();
     setVideoDetail(data.items[0]);
   }
-
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -49,42 +50,61 @@ function WatchPage() {
             allowFullScreen
           ></iframe>
         </div>
-        <div className="font-lato flex flex-col gap-2   ">
-          <div className="flex flex-col gap-2">
-            <p className="font-bold text-lg">{title}</p>
-            <p className="font-semibold text-md ">{channelTitle}</p>
+
+        {isVideoDetailEmpty ? (
+          <ShimmerDescription></ShimmerDescription>
+        ) : (
+          <div className="font-lato flex flex-col gap-2   ">
+            <div className="flex flex-col gap-2">
+              <p className="font-bold text-lg">{title}</p>
+              <p className="font-semibold text-md ">{channelTitle}</p>
+            </div>
+            <div className="w-[100%] bg-[#f2f2f2] p-2">
+              <p>{getViewCount(viewCount)} views</p>
+              <VideoDescription description={description}></VideoDescription>
+            </div>
           </div>
-          <div className="w-[100%] bg-[#f2f2f2] p-2">
-            <p>{getViewCount(viewCount)} views</p>
-            <VideoDescription description={description}></VideoDescription>
-          </div>
-        </div>
+        )}
         <CommentsContainer id={id}></CommentsContainer>
       </div>
 
       <div className="hidden lg:flex flex-col h-[80vh] w-[30%]">
         <ChatContainer></ChatContainer>
-        <form className="p-2 border border-t-0 rounded-bl-lg rounded-br-lg" onSubmit={(e)=>{
-          e.preventDefault();
-          setChat("")
-          dispatch(chatActions.addChats({name:'Balan Thevar',message:userChat}))
-
-        }}>
+        <form
+          className="p-2 border border-t-0 rounded-bl-lg rounded-br-lg"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setChat("");
+            dispatch(
+              chatActions.addChats({ name: "Balan Thevar", message: userChat })
+            );
+          }}
+        >
           <input
             type="text"
             className="border border-x-0 border-t-0
            p-2 w-[100%] focus:outline-none"
-            onChange={(e)=>setChat(e.target.value)}
+            onChange={(e) => setChat(e.target.value)}
             placeholder="Chat..."
             value={userChat}
           ></input>
           <div className="flex justify-end mt-2">
-            <p className="cursor-pointer" onClick={()=>{
-              
-              dispatch(chatActions.addChats({name:'Balan Thevar',message:userChat}))
-              setChat("")
-            }}>
-            <FontAwesomeIcon icon={faPaperPlane} className="h-6 cursor-pointer" />
+            <p
+              className="cursor-pointer"
+              onClick={() => {
+                dispatch(
+                  chatActions.addChats({
+                    name: "Balan Thevar",
+                    message: userChat,
+                  })
+                );
+                setChat("");
+              }}
+            >
+              <FontAwesomeIcon
+                icon={faPaperPlane}
+                className="h-6 cursor-pointer"
+              />
             </p>
           </div>
         </form>

@@ -15,7 +15,7 @@ function ShimmerComment() {
   }
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4 mt-2'>
         {shimmerItems.map((item)=> item)}
     </div>
   );
