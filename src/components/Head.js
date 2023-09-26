@@ -12,7 +12,7 @@ import {
   faCircleUser,
   faArrowLeft,
   faSun,
-  faMoon,
+  faMoon,faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 
 import YoutubeIcon from "./UI/YoutubeIcon";
@@ -83,12 +83,8 @@ function Head() {
           <YoutubeIcon type="nav" clas></YoutubeIcon>
 
           <div className="md:hidden flex justify-center h-8">
-            <img
-              src={search}
-              className="w-[1.5rem] inline "
-              alt="search"
-              onClick={toggleSearch}
-            ></img>
+      
+            <FontAwesomeIcon  onClick={toggleSearch} icon={faMagnifyingGlass} className="h-[1.4rem] mt-1"/>
           </div>
 
           <SearchForm

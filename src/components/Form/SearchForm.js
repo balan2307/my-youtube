@@ -4,6 +4,16 @@ import { SEARCH_SUGGESTION_API } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { searchActions } from "../../store/searchSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBell,
+  faVideo,
+  faCircleUser,
+  faArrowLeft,
+  faSun,
+  faMoon,
+  faMagnifyingGlass,
+} from "@fortawesome/free-solid-svg-icons";
 
 function SearchForm({ style, type }) {
   const dispatch = useDispatch();
@@ -62,7 +72,9 @@ function SearchForm({ style, type }) {
       >
         <input
           type="text"
-          className={`rounded-l-3xl border ${darkMode ? 'dark' : ''} border-[#e6e8ec] h-8 w-[85%] py-2 px-3`}
+          className={`rounded-l-3xl border ${
+            darkMode ? "dark" : ""
+          } border-[#e6e8ec] h-8 w-[85%] py-2 px-3`}
           value={searchedTerm}
           onChange={(e) => {
             setSearchedTerm(e.target.value);
@@ -71,45 +83,50 @@ function SearchForm({ style, type }) {
           onBlur={() => setToggle(false)}
         />
 
-        <div
-          className="inline-flex w-[15%] h-8 border border-[#e6e8ec] justify-center rounded-r-3xl border-l-0 bg-[#f2f2f2] dark"
-        >
-          <img
-            src={search}
-            className="w-[1.5rem] inline "
-            alt="search"
+        <div className="inline-flex w-[15%] h-8 border border-[#e6e8ec] justify-center rounded-r-3xl border-l-0 bg-[#f2f2f2] dark">
+          <FontAwesomeIcon
+            style={{ color: "black" }}
             onClick={() => {
+              if (searchedTerm?.trim.length == 0) return;
               navigate(`/results?search_query=${searchedTerm}`);
               setToggle(false);
             }}
-          ></img>
+            icon={faMagnifyingGlass}
+            className={`h-[1.4rem] mt-1 `}
+          />
         </div>
       </form>
 
-      {searchedTerm.length !== 0 && suggestion.length !== 0 && toggleResults && (
-        <div
-          className={`w-[70%] md:w-[40%] border mt-1 absolute ${
-            darkMode ? 'bg-[#282828]' : 'bg-white'
-          } p-2 rounded-md shadow-md ${type === "lg" ? "hidden md:block" : ""}`}
-        >
-          {suggestion.map((suggest, i) => (
-            <div
-              className={`flex ${darkMode ? 'hover:bg-[#525151]' : 'hover:bg-gray-200'}`}
-              key={i}
-              onMouseDown={(e) => handleClick(e)}
-            >
-              <img
-                src={search}
-                className="w-[1.5rem] inline "
-                alt="search"
-              ></img>
-              <p className="p-1 cursor-pointer" data-query={suggest}>
-                {suggest}
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
+      {searchedTerm.length !== 0 &&
+        suggestion.length !== 0 &&
+        toggleResults && (
+          <div
+            className={`w-[70%] md:w-[40%] border mt-1 absolute ${
+              darkMode ? "bg-[#282828]" : "bg-white"
+            } p-2 rounded-md shadow-md ${
+              type === "lg" ? "hidden md:block" : ""
+            }`}
+          >
+            {suggestion.map((suggest, i) => (
+              <div
+                className={`flex ${
+                  darkMode ? "hover:bg-[#525151]" : "hover:bg-gray-200"
+                }`}
+                key={i}
+                onMouseDown={(e) => handleClick(e)}
+              >
+                <FontAwesomeIcon
+                  style={{ color: `${darkMode ? 'white' : 'black'}` }}
+                  icon={faMagnifyingGlass}
+                  className={`h-[1.4rem] mt-1 `}
+                />
+                <p className="p-1 cursor-pointer" data-query={suggest}>
+                  {suggest}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
     </div>
   );
 }
