@@ -52,7 +52,8 @@ function VideoDescription({description,title,channelTitle,viewCount}) {
       </span>
       {!toggleDescp && (
         <span
-          className="font-semibold cursor-pointer"
+          className={`font-semibold cursor-pointer 
+          ${darkMode ? 'text-white' : 'text-black]'}`}
           onClick={() => setDescpToggle(true)}
         >
           ...Show more
@@ -65,7 +66,8 @@ function VideoDescription({description,title,channelTitle,viewCount}) {
           </span>
           {toggleDescp && (
             <span
-              className="font-semibold cursor-pointer break-all"
+              className={`font-semibold cursor-pointer break-all
+               ${darkMode ? 'text-white' : 'text-black]'}`}
               onClick={() => {
                 setDescpToggle(false)
               }}

@@ -30,9 +30,9 @@ const CommentList = ({ comments }) => {
             }
             authorProfileUrl={
               comment?.snippet?.topLevelComment
-                ? comment?.snippet?.topLevelComment?.snippet
-                    ?.authorProfileImageUrl
-                : comment?.snippet?.authorProfileImageUrl
+                ? (comment?.snippet?.topLevelComment?.snippet
+                    ?.authorProfileImageUrl)
+                : (comment?.snippet?.authorProfileImageUrl)
             }
           />
           {comment?.replies && (
