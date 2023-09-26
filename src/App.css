@@ -7,6 +7,7 @@
 @tailwind utilities;
 
 
+
 @layer base {
     ::-webkit-scrollbar-thumb{
     @apply bg-transparent shadow-sm
@@ -15,6 +16,10 @@
     @apply w-2 bg-transparent
     }
     ::-webkit-scrollbar-thumb{
-    @apply rounded-none  bg-gray-400 /*color trackbar*/
+    @apply rounded-none  bg-[#0f0f0f] /*color trackbar*/
+    }
+
+    .dark{
+        @apply bg-black text-white
     }
 }

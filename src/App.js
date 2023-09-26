@@ -5,8 +5,9 @@ import Body from "./components/Body";
 import Head from "./components/Head";
 import WatchPage from "./components/WatchPage";
 import SearchResultContainer from "./components/SearchResultContainer";
-
-
+import { useEffect } from "react";
+import { useSelector ,useDispatch } from 'react-redux';
+import { Appactions } from "./store/AppSlice";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,9 +30,34 @@ const router = createBrowserRouter([
 ]);
 function App() {
 
+ 
+  const dispatch=useDispatch()
+
+
+
+  useEffect(() => {
+
+    const darkMode=localStorage.getItem("darkMode") || false
+
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+      
+     
+      if(!darkMode) dispatch(Appactions.toggledarkMode())
+    }
+    else {
+  
+      if(darkMode) dispatch(Appactions.toggledarkMode())
+    }
+  }, [])
+
+
+
+
+
 
   return (
     <>
+
       
       <RouterProvider router={router}></RouterProvider>
     </>

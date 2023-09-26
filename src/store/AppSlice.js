@@ -4,18 +4,30 @@ const appSlice = createSlice({
   name: "app",
   initialState: {
     status: false,
-    backdrop:false
+    backdrop: false,
+    darkMode: JSON.parse(localStorage.getItem("darkMode")) || false,
   },
   reducers: {
     toggleSidebar(state) {
-        state.status=!state.status
+      state.status = !state.status;
     },
-    toggleBackdrop(state){
-      state.backdrop=!state.backdrop
-    }
+    toggleBackdrop(state) {
+      state.backdrop = !state.backdrop;
+    },
+    toggledarkMode(state) {
+      const newDarkMode = !state.darkMode;
+
+   
+
+     
+      localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
+
+      
+      console.log("neww ",newDarkMode)
+      state.darkMode = newDarkMode;
+    },
   },
 });
 
-
-export const Appactions=appSlice.actions;
-export default appSlice.reducer
+export const Appactions = appSlice.actions;
+export default appSlice.reducer;

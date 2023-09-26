@@ -7,6 +7,7 @@ import {
   faThumbsUp
 } from "@fortawesome/free-solid-svg-icons";
 
+
 import YoutubeIcon from "../UI/YoutubeIcon";
 import SidebarItem from "./SidebarItem";
 
@@ -14,6 +15,7 @@ import { useSelector } from "react-redux";
 
 function SideBar() {
   const showSidebar = useSelector((store) => store.app.status);
+  const darkMode=useSelector((state)=>state.app.darkMode)
 
 
 
@@ -21,12 +23,12 @@ function SideBar() {
     <>
       <div
         className={`hidden sm:flex font-lato px-[1rem] py-[0.45rem] m-0 flex-col gap-[0rem]
-         bg-white text-black h-[100vh] w-[45%] sm:w-[30%] lg:w-[20%]  z-50 
+        ${darkMode ? 'dark' : 'bg-white text-black'}  h-[100vh] w-[45%] sm:w-[30%] lg:w-[20%]  z-50 
          left-0 top-0
 
          absolute ease-in-out duration-300 ${
            showSidebar ? "translate-x-0 " : "-translate-x-[40rem]"
-         }   `}
+         }  `}
       >
   
         <YoutubeIcon className="p-2" ></YoutubeIcon>

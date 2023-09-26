@@ -1,11 +1,12 @@
 import React from "react";
 import { useState ,useEffect } from "react";
 import  {Link} from 'react-router-dom'
-
-
-function VideoDescription({description}) {
+import { useSelector } from "react-redux";
+import { getViewCount } from "../../utils/viewCount";
+function VideoDescription({description,title,channelTitle,viewCount}) {
   const [toggleDescp, setDescpToggle] = useState(false);
   const [paraBreak, setParaBreak] = useState(0);
+  const darkMode=useSelector((state)=>state.app.darkMode)
 
 
   useEffect(()=>{
@@ -37,7 +38,15 @@ function VideoDescription({description}) {
   }, [description]);
 
   return (
-    <div>
+
+    <div className="font-lato flex flex-col gap-2   ">
+    <div className="flex flex-col gap-2">
+      <p className="font-bold text-lg">{title}</p>
+      <p className="font-semibold text-md ">{channelTitle}</p>
+    </div>
+    <div className={`w-[100%] ${darkMode ? 'bg-[#403939]' : 'bg-[#f2f2f2]'}  p-2`}>
+      <p>{getViewCount(viewCount)} views</p>
+      <div >
       <span className="whitespace-pre-line">
         {description?.slice(0, paraBreak - 1)}
       </span>
@@ -69,6 +78,10 @@ function VideoDescription({description}) {
         ""
       )}
     </div>
+    </div>
+  </div>
+
+    
   );
 }
 

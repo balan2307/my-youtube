@@ -3,21 +3,27 @@ import search from "../assets/search.svg";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchForm from "../components/Form/SearchForm";
+import { useSelector ,useDispatch } from "react-redux";
+import { Appactions } from "../store/AppSlice";
 
 import {
   faBell,
   faVideo,
   faCircleUser,
   faArrowLeft,
+  faSun,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
 
 import YoutubeIcon from "./UI/YoutubeIcon";
-
 
 function Head() {
   const [toggle, setToggle] = useState(false);
   const [windowSize, setWindowSize] = useState(getWindowSize());
   const [serchedTerm, setSearchedTerm] = useState("");
+  const dispatch=useDispatch()
+
+  const darkMode = useSelector((state) => state.app.darkMode);
 
   function getWindowSize() {
     const { innerWidth, innerHeight } = window;
@@ -62,6 +68,12 @@ function Head() {
     });
   }
 
+  function toggleMode()
+  {
+    console.log("toggle")
+    dispatch(Appactions.toggledarkMode())
+  }
+
   return (
     <>
       {!toggle && (
@@ -79,12 +91,23 @@ function Head() {
             ></img>
           </div>
 
-          <SearchForm style="hidden md:flex   items-center  " type="lg"></SearchForm>
-
-    
+          <SearchForm
+            style="hidden md:flex   items-center  "
+            type="lg"
+          ></SearchForm>
 
           <div className="flex  justify-end mt-[3px]">
             <div className="flex gap-4 md:gap-4 ">
+              {darkMode && (
+                <FontAwesomeIcon
+                  icon={faSun}
+                  style={{ height: "25px", color: "white" }}
+                  onClick={toggleMode}
+                />
+              )}
+              {!darkMode && (
+                <FontAwesomeIcon icon={faMoon} style={{ height: "25px" }} onClick={toggleMode} />
+              )}
               <FontAwesomeIcon icon={faVideo} style={{ height: "25px" }} />
               <FontAwesomeIcon icon={faBell} style={{ height: "25px" }} />
               <FontAwesomeIcon icon={faCircleUser} style={{ height: "25px" }} />
@@ -104,7 +127,6 @@ function Head() {
           </div>
 
           <SearchForm style="flex items-center "></SearchForm>
-
         </div>
       )}
     </>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 import { YOUTUBE_VIDEO_BYID, COMMENTS, API_KEY } from "../utils/constants";
-import { getViewCount } from "../utils/viewCount";
+
 import VideoDescription from "./Video/VideoDescription";
 import CommentsContainer from "./Comments/CommentsContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,7 @@ function WatchPage() {
   const id = searchParams.get("v");
   const [videoDetail, setVideoDetail] = useState({});
   const [userChat, setChat] = useState("");
+  const darkMode=useSelector((state)=>state.app.darkMode)
 
   const { snippet = {}, statistics = {} } = videoDetail;
   const { title, channelTitle, thumbnails, description } = snippet;
@@ -27,6 +28,8 @@ function WatchPage() {
   const isVideoDetailEmpty = Object.keys(videoDetail).length === 0;
 
   async function fetchVideoDetails() {
+
+
     const res = await fetch(YOUTUBE_VIDEO_BYID + id);
     const data = await res.json();
     setVideoDetail(data.items[0]);
@@ -54,16 +57,11 @@ function WatchPage() {
         {isVideoDetailEmpty ? (
           <ShimmerDescription></ShimmerDescription>
         ) : (
-          <div className="font-lato flex flex-col gap-2   ">
-            <div className="flex flex-col gap-2">
-              <p className="font-bold text-lg">{title}</p>
-              <p className="font-semibold text-md ">{channelTitle}</p>
-            </div>
-            <div className="w-[100%] bg-[#f2f2f2] p-2">
-              <p>{getViewCount(viewCount)} views</p>
-              <VideoDescription description={description}></VideoDescription>
-            </div>
-          </div>
+
+              <VideoDescription description={description}
+              title={title} channelTitle={channelTitle} viewCount={viewCount}
+              ></VideoDescription>
+            
         )}
         <CommentsContainer id={id}></CommentsContainer>
       </div>
@@ -82,8 +80,8 @@ function WatchPage() {
         >
           <input
             type="text"
-            className="border border-x-0 border-t-0
-           p-2 w-[100%] focus:outline-none"
+            className={`${darkMode ? 'dark' : ''} border border-x-0 border-t-0
+           p-2 w-[100%] focus:outline-none `}
             onChange={(e) => setChat(e.target.value)}
             placeholder="Chat..."
             value={userChat}

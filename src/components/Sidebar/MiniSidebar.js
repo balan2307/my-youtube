@@ -5,13 +5,17 @@ import {
   faPlay,
   faClapperboard
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+
 
 function MiniSidebar() {
+
+  const darkMode=useSelector((state)=>state.app.darkMode)
  
   return (
     <div
       className={`hidden sm:flex font-lato p-4  m-0 flex-col gap-[0rem]
-       bg-white text-black  w-[4.8rem]   items-center`}
+      ${darkMode ? 'dark' : 'bg-white text-black'}  w-[4.8rem]   items-center`}
     >
       <div className="flex flex-col gap-4 ">
         <SidebarItem icon={faHouse} name="Home" type="mini"></SidebarItem>
