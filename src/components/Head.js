@@ -70,7 +70,7 @@ function Head() {
 
   function toggleMode()
   {
-    console.log("toggle")
+   
     dispatch(Appactions.toggledarkMode())
   }
 

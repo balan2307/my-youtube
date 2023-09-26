@@ -6,7 +6,8 @@ function Comment({author,comment,authorProfileUrl}) {
   return (
     <div className="flex gap-4">
       <div className="">
-       <img src={authorProfileUrl} className="rounded-full h-8 sm:h-10"></img>
+       <img src={authorProfileUrl} className="rounded-full h-8 sm:h-10"
+       alt="profile"></img>
       </div>
       <div className="flex flex-col w-[95%]">
         <p className="text-sm font-semibold">{author}</p>

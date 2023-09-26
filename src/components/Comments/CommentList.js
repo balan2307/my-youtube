@@ -16,7 +16,8 @@ const CommentList = ({ comments }) => {
   return (
     <div className="flex flex-col gap-6 mt-4">
       {comments?.map((comment, index) => (
-        <div key={index}>
+        <div key={comment.id}>
+
           <Comment
             author={
               comment?.snippet?.topLevelComment

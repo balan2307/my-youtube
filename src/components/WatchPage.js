@@ -42,7 +42,7 @@ function WatchPage() {
 
   return (
     <div className="p-6 flex flex-row gap-4 mx-[2%]">
-      <div className=" lg:w-[70%] ">
+      <div className="w-[100%] lg:w-[70%] ">
         <div className=" h-[30vh]  xsm:h-[70vh]  ">
           <iframe
             width="100%"
@@ -54,6 +54,7 @@ function WatchPage() {
           ></iframe>
         </div>
 
+        {/* <ShimmerDescription></ShimmerDescription> */}
         {isVideoDetailEmpty ? (
           <ShimmerDescription></ShimmerDescription>
         ) : (
