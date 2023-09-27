@@ -1,6 +1,6 @@
 import React from "react";
 import search from "../assets/search.svg";
-import { useState, useEffect } from "react";
+import { useState, useEffect ,useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchForm from "../components/Form/SearchForm";
 import { useSelector ,useDispatch } from "react-redux";
@@ -30,31 +30,22 @@ function Head() {
     return { innerWidth, innerHeight };
   }
 
-  function debounce(fn, delay) {
-    let timerId;
-    return function (...args) {
-      if (timerId) {
-        clearTimeout(timerId);
-      }
-      timerId = setTimeout(() => {
-        fn(...args);
-      }, delay);
-    };
-  }
+
+  const debouncedHandleWindowResize = useCallback(() => {
+    setWindowSize(getWindowSize());
+  }, []);
 
   useEffect(() => {
-    function handleWindowResize() {
-      setWindowSize(getWindowSize());
-    }
+    // Add an event listener for window resize events
+    window.addEventListener("resize", debouncedHandleWindowResize);
 
-    const debouncedResize = debounce(handleWindowResize, 200);
-
-    window.addEventListener("resize", debouncedResize);
-
+    // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", debouncedResize);
+      window.removeEventListener("resize", debouncedHandleWindowResize);
     };
-  }, []);
+  }, [debouncedHandleWindowResize]);
+
+
 
   useEffect(() => {
     if (windowSize.innerWidth >= 768) {
@@ -113,7 +104,7 @@ function Head() {
       )}
 
       {toggle && (
-        <div className="py-3 mx-4   grid  grid-flow-col auto-cols-[minmax(0,1fr)] grid-cols-[1fr,6fr]">
+        <div className="grid py-3 mx-4    grid-flow-col auto-cols-[minmax(0,1fr)] grid-cols-[1fr,6fr]">
           <div className=" flex justify-center h-8">
             <FontAwesomeIcon
               icon={faArrowLeft}

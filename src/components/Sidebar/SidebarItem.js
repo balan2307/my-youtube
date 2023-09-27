@@ -1,12 +1,14 @@
 import React from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSelector } from "react-redux";
 
 function SidebarItem({ icon, name, type }) {
 
-  
+  const darkMode=useSelector((state)=>state.app.darkMode)
+
   return (
     !type ? (
-      <li className="cursor-pointer flex hover:bg-[#eaebe6] p-2 rounded-md">
+      <li className={`cursor-pointer flex ${darkMode ? 'hover:bg-[#383934]' : 'hover:bg-[#eaebe6]'} p-2 rounded-md`}>
         <div className="flex">
           <div className="h-8 w-8 flex items-center">
             <FontAwesomeIcon
@@ -19,8 +21,8 @@ function SidebarItem({ icon, name, type }) {
         </div>
       </li>
     ) : (
-        <div className="cursor-pointer flex w-[100%]  hover:bg-[#eaebe6] rounded-md">
-        <div className="flex flex-col gap-2 w-[100%] p-1">
+        <div className={`cursor-pointer flex  p-2 rounded-md`}>
+        <div className={`flex flex-col  gap-2 ${darkMode ? 'hover:bg-[#383934] rounded-lg' : 'hover:bg-[#eaebe6] rounded-lg'} w-[100%] p-1`}>
           <div className=" flex  justify-center m-0 w-[100%]">
             <FontAwesomeIcon
               icon={icon}
