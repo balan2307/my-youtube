@@ -37,17 +37,20 @@ function App() {
 
   useEffect(() => {
 
-    const darkMode=localStorage.getItem("darkMode") || false
 
-    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+    const darkMode=JSON.parse(localStorage.getItem("darkMode"))|| false
+
+    console.log("mode ",darkMode)
+
+    if(window.matchMedia('(prefers-color-scheme: dark)').matches && !darkMode){
       
-     
+     console.log("darkk")
       if(!darkMode) dispatch(Appactions.toggledarkMode())
     }
-    else {
+    // else {
   
-      if(darkMode) dispatch(Appactions.toggledarkMode())
-    }
+    //   if(darkMode) dispatch(Appactions.toggledarkMode())
+    // }
   }, [])
 
 

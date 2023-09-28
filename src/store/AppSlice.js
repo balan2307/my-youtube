@@ -17,6 +17,7 @@ const appSlice = createSlice({
     toggledarkMode(state) {
       const newDarkMode = !state.darkMode;
 
+      console.log("toggle")
       localStorage.setItem("darkMode", JSON.stringify(newDarkMode));
 
       state.darkMode = newDarkMode;
