@@ -27,12 +27,16 @@ function SearchForm({ style, type }) {
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    
     const timer = setTimeout(() => {
-      if (searches[searchedTerm]) {
-        setSuggestion(searches[searchedTerm]);
-      } else {
-        getSuggestion();
-      }
+      // if (searches[searchedTerm]) {
+      //   setSuggestion(searches[searchedTerm]);
+      // } else {
+      //   getSuggestion();
+      // }
+      if(searchedTerm?.trim()?.length==0) return;
+      navigate(`/results?search_query=${searchedTerm}`);
     }, 200);
 
     return () => {
@@ -40,7 +44,13 @@ function SearchForm({ style, type }) {
     };
   }, [searchedTerm]);
 
+
+  function getSearchResults()
+  {
+    console.log("search ",searchedTerm)
+  }
   async function getSuggestion() {
+    
     const response = await fetch(SEARCH_SUGGESTION_API + searchedTerm);
     const data = await response.json();
     setSuggestion(data[1]);
@@ -87,9 +97,12 @@ function SearchForm({ style, type }) {
           <FontAwesomeIcon
             style={{ color: "black" }}
             onClick={() => {
+
+              getSearchResults()
               if (searchedTerm?.trim.length == 0) return;
               navigate(`/results?search_query=${searchedTerm}`);
               setToggle(false);
+              
             }}
             icon={faMagnifyingGlass}
             className={`h-[1.4rem] mt-1 `}
@@ -119,6 +132,7 @@ function SearchForm({ style, type }) {
                   style={{ color: `${darkMode ? 'white' : 'black'}` }}
                   icon={faMagnifyingGlass}
                   className={`h-[1.4rem] mt-1 `}
+                  onClick={()=>getSearchResults()}
                 />
                 <p className="p-1 cursor-pointer" data-query={suggest}>
                   {suggest}
